@@ -1,0 +1,28 @@
+extends ../layout
+
+block content 
+  h1 Guides
+
+  a(href="/albums/new") New Guide
+
+
+  table
+    thead
+      tr
+        //- th ID
+        th Name
+        th Email
+        th Date
+        th Location
+        th Comments
+    tbody
+      for album in allAlbums
+        tr
+          //- td= album._id
+          td
+             a(href="/albums/"+album._id)= album.name
+          td= album.email
+          td= album.date
+          td= album.location
+          td= album.comments
+            

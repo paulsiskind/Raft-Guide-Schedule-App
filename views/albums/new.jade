@@ -1,0 +1,33 @@
+extends ../layout
+
+block content 
+
+  h1 New Guide
+
+  form(action="/albums",method="post")
+    div.guide
+      label Name 
+      input(type="text" name="album_name")
+    div.email
+      label Email 
+      input(type="email" name="email")
+    div.date
+      label Date 
+      input(type="date" name="date")
+    div.location
+      label Location 
+      select(name = "location")
+        option(value="Beginners") Beginners
+        option(value="Lawson") Lawson
+        option(value="Dumont") Dumont
+        option(value="Kermits") Kermits
+        option(value="Gore Canyon") Gore Canyon
+        option(value="Upper C") Upper C
+        option(value="Shoshone") Shoshone
+    div.comments
+      label Comments 
+      textarea(name='comments')   
+    div.submit 
+      button(type="submit") Submit
+      button(type="reset" value="reset") 
+        a(href="/albums/") Cancel

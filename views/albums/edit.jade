@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+  h1 Edit Schedule
+
+  form(action="/albums/" +theAlbum._id + '/update',method="post")
+    div.guide
+      label Guide 
+      input(type="text" name="album_name" value=theAlbum.name)
+
+    div.email
+      label Email 
+      input(type="email" name="email" value=theAlbum.email)
+
+    div.date
+      label Date 
+      input(type="date" name="date" value= theAlbum.date)
+
+    div.location
+      label Location 
+      select(name = "location" value=theAlbum.location)
+        option(value="Beginners" selected=(theAlbum.location=="Beginners" ? "selected" : undefined)) Beginners
+        option(value="Lawson" selected=(theAlbum.location=="Lawson" ? "selected" : undefined)) Lawson
+        option(value="Dumont" selected=(theAlbum.location=="Dumont" ? "selected" : undefined)) Dumont
+        option(value="Kermits" selected=(theAlbum.location=="Kermits" ? "selected" : undefined)) Kermits
+        option(value="Gore Canyon" selected=(theAlbum.location=="Gore Canyon" ? "selected" : undefined)) Gore Canyon
+        option(value="Upper C" selected=(theAlbum.location=="Upper C" ? "selected" : undefined)) Upper C
+        option(value="Shoshone" selected=(theAlbum.location=="Shoshone" ? "selected" : undefined)) Shoshone
+
+    div.comments
+      label Comments 
+      textarea(value=theAlbum.comments, placeholder=theAlbum.comments, name="comments")
+
+    div.submit 
+      button(type="submit") Edit
+      button(type="reset" value="reset") 
+        a(href="/albums/") Cancel
