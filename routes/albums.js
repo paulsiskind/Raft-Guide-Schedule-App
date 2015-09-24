@@ -11,7 +11,7 @@ router.get('/albums', function(req, res, next) {
 });
 router.get('/albums/bookings', function(req, res, next){
   customerCollection.find({}, function(err, records){
-    res.render('albums/bookings')
+    res.render('albums/bookings', {allCustomers: records})
   });
 });
 

@@ -1,0 +1,29 @@
+extends ../layout
+
+block content 
+  h1 Customer Bookings
+
+  button(type="reset" value="reset") 
+      a(href="/albums") Home
+
+  table
+    thead
+      tr
+        th Name
+        th Phone
+        th Date
+        th Email
+        th Trip
+        th Groupsize
+        th Comments
+
+    tbody
+      for customer in allCustomers
+        tr
+          td= customer.name
+          td= customer.telephone
+          td= customer.date
+          td= customer.email
+          td= customer.triptype
+          td= customer.groupsize
+          td= customer.comments
