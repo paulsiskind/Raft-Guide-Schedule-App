@@ -65,6 +65,24 @@ router.post('/albums/:id/update', function(req, res, next){
   });
 });
 
+router.post('/albums/:id/updateBooking', function(req, res, next){
+  customerCollection.updateById(req.params.id,{name: req.body.fullName,
+                              telephone: req.body.telephone,
+                              email: req.body.email,
+                              groupsize: req.body.groupsize,
+                              triptype: req.body.tripType,
+                              date: req.body.date,
+                              comments: req.body.comments},
+                              function(err, data){
+                           res.redirect('/albums/bookings');
+  });
+});
+router.post('/albums/:id/deleteBooking', function(req, res, next){
+  customerCollection.remove({_id: req.params.id}, function(err, data){
+    res.redirect('/albums/bookings')
+  })
+})
+
 router.post('/albums/:id/delete', function(req, res, next) {
   albumCollection.remove({_id: req.params.id }, function (err, record) {
     res.redirect('/albums/');
@@ -77,5 +95,10 @@ router.get('/albums/:id/edit', function(req, res, next){
  });
 });
 
+router.get('/albums/:id/editBookings', function(req, res, next){
+  customerCollection.findOne({_id: req.params.id}, function(err, data){
+    res.render('albums/editBookings',{theCustomer: data});
+  });
+});
 
 module.exports = router;

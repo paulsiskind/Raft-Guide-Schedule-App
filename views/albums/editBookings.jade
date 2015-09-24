@@ -1,0 +1,48 @@
+extends ../layout
+
+block content
+
+   h1 Edit Customers
+
+
+   form(action="/albums/" + theCustomer._id + '/updateBooking', method="post")
+          div.fullname
+            label Full Name 
+            input(type="text" name="fullName" value=theCustomer.name)
+          div.telephone
+            label Telephone 
+            input(type="tel" name="telephone" value=theCustomer.telephone)
+          div.email
+            label Email 
+            input(type="email" name="email" value=theCustomer.email)
+          div.groupsize
+            label How Many in Your Group? 
+            input(type="number" name="groupsize" value=theCustomer.groupsize)
+          div.tripType
+            label Trip Type 
+            br
+            input(type="radio" name="tripType" value="beginner" checked=(theCustomer.tripType==beginner ? "checked" : undefined))  
+            | Middle Clear Creek Class I-II $45
+            br
+            input(type="radio" name="tripType" value="intermediate" checked=(theCustomer.tripType==intermediate ? "checked" : undefined))
+            | Upper Clear Creek Class III-VI $57
+            br
+            input(type="radio" name="tripType" value="advance" checked=(theCustomer.tripType==advance ? "checked" : undefined))
+            | Lower Clear Creek Class IV(V) $70
+            br
+            input(type="radio" name="tripType" value="fullday" checked=(theCustomer.tripType==fullday ? "checked" : undefined))
+            | Full Day Advance I-IV(V) $90
+            br
+            input(type="radio" name="tripType" value="gore" checked=(theCustomer.tripType==gore ? "checked" : undefined))
+            | Full Day Gore Canyon IV-V $120
+          div.date
+            label Date
+            input(type="date" name="date" value=theCustomer.date)
+          div.comments
+            label Comments 
+            textarea(name='comments' value=theCustomer.comments)
+          div.submit
+            button(type="submit") Submit 
+
+        form(action="/albums/"+ theCustomer._id + '/deleteBooking', method="post")
+           button(type="submit" value="Delete") Delete
