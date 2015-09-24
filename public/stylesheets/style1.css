@@ -138,6 +138,7 @@ Main components
     transform: translateY(0);
     line-height: 70px;
   }
+  
   .cd-main-nav ul.is-visible {
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
@@ -159,8 +160,8 @@ Main components
     color: #3d3536;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 14px;
-    font-size: 0.875rem;
+    font-size: 18px;
+    /*font-size: 0.875rem;*/
   }
   .no-touch .cd-main-nav a:hover {
     color: #99a478;
@@ -256,4 +257,23 @@ Main components
     line-height: 2;
     font-weight: 300;
   }
+}
+li:hover, li:focus
+{
+  -webkit-animation: pulsate 1.2s linear infinite;
+  animation: pulsate 1.2s linear infinite;
+}
+  
+@-webkit-keyframes pulsate
+{
+  0%   { color: #ddd; text-shadow: 0 -1px 0 #000; }
+  50%  { color: #fff; text-shadow: 0 -1px 0 #444, 0 0 5px #ffd, 0 0 8px #fff; }
+  100% { color: #ddd; text-shadow: 0 -1px 0 #000; }
+}
+    
+@keyframes pulsate
+{
+  0%   { color: #ddd; text-shadow: 0 -1px 0 #000; }
+  50%  { color: #fff; text-shadow: 0 -1px 0 #444, 0 0 5px #ffd, 0 0 8px #fff; }
+  100% { color: #ddd; text-shadow: 0 -1px 0 #000; }
 }

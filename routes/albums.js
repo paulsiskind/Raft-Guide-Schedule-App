@@ -16,7 +16,11 @@ router.get('/albums/new', function(req, res, next){
 
 router.get('/albums/home', function(req, res, next){
   res.render('albums/home');
-})
+});
+
+router.get('/albums/booknow', function(req, res, next){
+  res.render('albums/booknow')
+});
 
 
 router.post('/albums', function(req, res, next) {

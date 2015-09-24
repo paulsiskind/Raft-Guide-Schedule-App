@@ -1,0 +1,54 @@
+extends ../layout1
+
+
+block content
+
+   header.cd-header
+     div.cd-logo
+      img(src="http://www.raftcoloradowhitewater.com/header-red-c.png?c=4-14") 
+      
+      nav.cd-main-nav 
+       ul
+        li
+         a(href="/albums/home") Home
+        li
+         a(href="/albums/home") White Water Rafting
+        li 
+         a(href="/albums/home") About Us
+        li
+         a(href="/albums/home") Area Info
+        li
+         a(href="/albums/home") Our Friends
+        li
+         a(href="/albums/booknow") Book Now
+
+   main.cd-main-content
+     div.cd-fixed-bg.cd-bg-1
+        h1 A Downstream Adventure Is Just a Few Click Away!
+  
+    
+     div.cd-scrolling-bg.cd-color-2
+        div.cd-container
+          h2 Book a Whitewater Rafting trip on Clear Creek, near Denver, Colorado
+          |Call us toll free on (844) 291-4218 to book over the phone
+          |Email us at info@downstreamadventures.com
+          |Or complete the simple form below...
+
+          div.fullname
+            label Full Name 
+            input(type="text" name="fullName")
+          div.telephone
+            label Telephone 
+            input(type="tel" name="telephone")
+          div.email
+            label Email 
+            input(type="email" name="email")
+          div.groupsize
+            label How Many in Your Group? 
+            input(type="number" name="groupsize")
+
+
+
+
+
+
