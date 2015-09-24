@@ -2,13 +2,18 @@ var express = require('express');
 var router = express.Router();
 var db = require('monk')('localhost/album-demo');
 var albumCollection = db.get('guides');
+var customerCollection = db.get('customers')
 
 router.get('/albums', function(req, res, next) {
   albumCollection.find({}, function (err, records) {
     res.render('albums/index', {allAlbums: records});
   });
 });
-
+router.get('/albums/bookings', function(req, res, next){
+  customerCollection.find({}, function(err, records){
+    res.render('albums/bookings')
+  });
+});
 
 router.get('/albums/new', function(req, res, next){
   res.render('albums/new');
@@ -20,6 +25,17 @@ router.get('/albums/home', function(req, res, next){
 
 router.get('/albums/booknow', function(req, res, next){
   res.render('albums/booknow')
+});
+
+router.post('/albums/booknow', function(req, res, next){
+  customerCollection.insert({ name: req.body.fullName,
+                              telephone: req.body.telephone,
+                              email: req.body.email,
+                              groupsize: req.body.groupsize,
+                              triptype: req.body.tripType,
+                              date: req.body.date,
+                              comments: req.body.comments});
+  res.redirect('/albums/home');
 });
 
 

@@ -33,7 +33,7 @@ block content
           |Call us toll free on (844) 291-4218 to book over the phone
           |Email us at info@downstreamadventures.com
           |Or complete the simple form below...
-
+         form(action="/albums/booknow", method="post")
           div.fullname
             label Full Name 
             input(type="text" name="fullName")
@@ -46,8 +46,37 @@ block content
           div.groupsize
             label How Many in Your Group? 
             input(type="number" name="groupsize")
+          div.tripType
+            label Trip Type 
+            br
+            input(type="radio" name="tripType" value="Beginner")  
+            | Middle Clear Creek Class I-II $45
+            br
+            input(type="radio" name="tripType" value="intermediate")
+            | Upper Clear Creek Class III-VI $57
+            br
+            input(type="radio" name="tripType" value="advance")
+            | Lower Clear Creek Class IV(V) $70
+            br
+            input(type="radio" name="tripType" value="fullday")
+            | Full Day Advance I-IV(V) $90
+            br
+            input(type="radio" name="tripType" value="gore")
+            | Full Day Gore Canyon IV-V $120
+          div.date
+            label Date
+            input(type="date" name="date")
+          div.comments
+            label Comments 
+            textarea(name='comments')
+          div.submit
+            button(type="submit") Submit 
 
-
+     div.cd-fixed-bg.cd-bg-4
+         h2 ©2015 Downstream Adventures. All Rights Reserved.
+         | Local: (303) 848-4595 | Toll-Free: (844) 291-4218
+         br
+         | info@downstreamadventures.com
 
 
 
