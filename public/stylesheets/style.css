@@ -1,8 +1,9 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: blue; 
+ /* background-color: blue; */
   background:url('http://www.backcountry.com/wp-content/uploads/2014/05/IMG_6442.jpg') top center no-repeat; background-attachment: fixed;
+  height: 100%;
 }
 a {
   color: #00B7FF;
@@ -18,6 +19,11 @@ th{
   border-bottom: 10px solid black;
   font-size: 35px
 }
+.box{
+  background-color: green;
+}
+  
+}
 .guide, .email, .date, .location, .comments{
  padding: 10px;
 }
@@ -26,9 +32,8 @@ td:hover, td:focus{
   animation: pulsate 1.2s linear infinite;
 }
 .guideline{
-  position: bottom right
+  position: bottom right;
 }
-
 button
 {
   font-size: .9em;
