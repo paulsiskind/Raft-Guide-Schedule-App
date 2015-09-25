@@ -5,13 +5,13 @@ block content
 
   button(type="reset" value="reset") 
       a(href="/albums") Home
-  button(type="reset" value='reset')
-      a(href="/albums/editBookings") Edit
 
   table
     thead
       tr
+
         th Name
+        th ID
         th Phone
         th Date
         th Email
@@ -24,6 +24,8 @@ block content
         tr
           td
              a(href="/albums/"+ customer._id + '/editBookings')= customer.name
+          td 
+             a(href="/albums/"+ customer._id + '/editBookings')=customer._id
           td= customer.telephone
           td= customer.date
           td= customer.email

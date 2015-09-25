@@ -43,6 +43,8 @@ block content
             textarea(name='comments' value=theCustomer.comments)
           div.submit
             button(type="submit") Submit 
-
+            
         form(action="/albums/"+ theCustomer._id + '/deleteBooking', method="post")
            button(type="submit" value="Delete") Delete
+        button(type="cancel")
+          a(href="/albums/bookings") Cancel

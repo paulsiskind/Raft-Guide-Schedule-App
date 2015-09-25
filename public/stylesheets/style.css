@@ -22,18 +22,18 @@ th{
 .box{
   background-color: green;
 }
-  
+.guide, .email, .date, .location, .comments, .fullname, .telephone, .groupsize, .tripType{
+  padding: 10px;
+}  
 }
 .guide, .email, .date, .location, .comments{
- padding: 10px;
+ padding-bottom: 10px;
 }
 td:hover, td:focus{
   -webkit-animation: pulsate 1.2s linear infinite;
   animation: pulsate 1.2s linear infinite;
 }
-.guideline{
-  position: bottom right;
-}
+
 button
 {
   font-size: .9em;

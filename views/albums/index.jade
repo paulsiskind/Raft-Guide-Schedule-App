@@ -16,6 +16,7 @@ block content
       tr
         //- th ID
         th Name
+        th ID
         th Email
         th Date
         th Location
@@ -26,6 +27,8 @@ block content
           //- td= album._id
           td
              a(href="/albums/"+album._id)= album.name
+          td 
+             a(href="/albums/"+album._id)= album._id
           td= album.email
           td= album.date
           td= album.location

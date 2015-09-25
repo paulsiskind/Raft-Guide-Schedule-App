@@ -73,6 +73,7 @@ Main components
   float: left;
   margin: 13px 0 0 5%;
 }
+
 .cd-header #cd-logo img {
   display: block;
 }
@@ -80,7 +81,7 @@ Main components
   .cd-header {
     height: 70px;
   }
-  .cd-header #cd-logo {
+  .cd-header #cd-logo{
     margin: 23px 0 0 5%;
   }
 }
@@ -127,6 +128,9 @@ Main components
     height: auto;
     background: none;
     cursor: auto;
+  }
+  .cd-container h2{
+    padding-bottom: 10px;
   }
   .cd-main-nav ul {
     position: static;
@@ -203,7 +207,7 @@ Main components
   color: white;
 }
 .cd-fixed-bg.cd-bg-1 {
-  background-image: url("http://www.raftcoloradowhitewater.com/background.jpg");
+  background-image: url("http://hdwallpapers.cat/wallpaper/rafting_on_the_colorado_river_grand_canyon_hd-wallpaper-1350681.jpg");
 }
 .cd-fixed-bg.cd-bg-2 {
   background-image: url("http://i.ytimg.com/vi/BD9Oq0wSdcQ/maxresdefault.jpg");
