@@ -29,8 +29,20 @@ block content
 
     div.comments
       label Comments 
-      textarea(value=theAlbum.comments, placeholder=theAlbum.comments, name="comments")
-
+      input(type="text" value=theAlbum.comments, name="comments")
+    div.locationb
+      label Location 
+      select(name = "locationb" value=theAlbum.locationb)
+        option(value="Beginners" selected=(theAlbum.locationb=="Beginners" ? "selected" : undefined)) Beginners
+        option(value="Lawson" selected=(theAlbum.locationb=="Lawson" ? "selected" : undefined)) Lawson
+        option(value="Dumont" selected=(theAlbum.locationb=="Dumont" ? "selected" : undefined)) Dumont
+        option(value="Kermits" selected=(theAlbum.locationb=="Kermits" ? "selected" : undefined)) Kermits
+        option(value="Gore Canyon" selected=(theAlbum.locationb=="Gore Canyon" ? "selected" : undefined)) Gore Canyon
+        option(value="Upper C" selected=(theAlbum.locationb=="Upper C" ? "selected" : undefined)) Upper C
+        option(value="Shoshone" selected=(theAlbum.locationb=="Shoshone" ? "selected" : undefined)) Shoshone
+    div.commentsb
+      label Comments 
+      input(type="text" value=theAlbum.commentsb, name="commentsb")    
     div.submit 
       button(type="submit") Edit
       button(type="reset" value="reset") 

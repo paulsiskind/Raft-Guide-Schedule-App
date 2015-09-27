@@ -2,8 +2,10 @@ extends layout.jade
 
 block content
   if (!user)
+   button(type="fancy")
     a(href="/login") Login
     br
+   button(type="fancier")
     a(href="/register") Register
   if (user)
     p You are currently logged in as #{user.username}

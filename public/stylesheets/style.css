@@ -4,31 +4,29 @@ body {
  /* background-color: blue; */
   background:url('http://www.backcountry.com/wp-content/uploads/2014/05/IMG_6442.jpg') top center no-repeat; background-attachment: fixed;
   height: 100%;
+
 }
 a {
-  color: #00B7FF;
+  color: #0485A4;
 }
 table, td, th {
-    border: 3px solid #5092CC;
+    border-bottom: 2px solid #5092CC;
     text-align: center;
     width: 100%;
-    color: orange;
-  /*  background: #F17D17*/
+    color: #0B4027;
+    font-style: bold;
+    background-color: white;
+    background:rgba(255,255,255,0.5);
 }
 th{
-  border-bottom: 10px solid black;
-  font-size: 35px
+  border-bottom: 5px solid black;
+  font-size: 25px
 }
-.box{
-  background-color: green;
-}
-.guide, .email, .date, .location, .comments, .fullname, .telephone, .groupsize, .tripType{
+
+.guide, .email, .date, .location, .comments, .fullname, .telephone, .groupsize, .tripType, .locationb, .commentsb{
   padding: 10px;
 }  
-}
-.guide, .email, .date, .location, .comments{
- padding-bottom: 10px;
-}
+
 td:hover, td:focus{
   -webkit-animation: pulsate 1.2s linear infinite;
   animation: pulsate 1.2s linear infinite;

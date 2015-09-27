@@ -34,7 +34,8 @@ router.post('/albums/booknow', function(req, res, next){
                               groupsize: req.body.groupsize,
                               triptype: req.body.tripType,
                               date: req.body.date,
-                              comments: req.body.comments});
+                              comments: req.body.comments
+                           });
   res.redirect('/albums/home');
 });
 
@@ -44,7 +45,9 @@ router.post('/albums', function(req, res, next) {
                           email: req.body.email,
                            date: req.body.date, 
                        location: req.body.location,
-                       comments: req.body.comments});
+                       comments: req.body.comments,
+                      locationb: req.body.locationb,
+                      commentsb: req.body.commentsb});
   res.redirect('/albums');
 });
 
@@ -59,7 +62,9 @@ router.post('/albums/:id/update', function(req, res, next){
                           email: req.body.email,
                            date: req.body.date, 
                        location: req.body.location,
-                       comments: req.body.comments},
+                       comments: req.body.comments,
+                      locationb: req.body.locationb,
+                      commentsb: req.body.commentsb},
                        function(err, record){
                       res.redirect('/albums');                      
   });

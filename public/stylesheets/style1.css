@@ -264,8 +264,8 @@ Main components
 }
 li:hover, li:focus
 {
-  -webkit-animation: pulsate 1.2s linear infinite;
-  animation: pulsate 1.2s linear infinite;
+  -webkit-animation: pulsate 1.8s linear infinite;
+  animation: pulsate 1.8s linear infinite;
 }
   
 @-webkit-keyframes pulsate
