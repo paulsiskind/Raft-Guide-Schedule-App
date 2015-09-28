@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('monk')('localhost/album-demo');
+var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/album-demo');
 var albumCollection = db.get('guides');
 var customerCollection = db.get('customers')
 
