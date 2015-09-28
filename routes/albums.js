@@ -19,12 +19,15 @@ router.get('/albums/new', function(req, res, next){
   res.render('albums/new');
 });
 
-router.get('/albums/home', function(req, res, next){
+router.get('/home', function(req, res, next){
   res.render('albums/home');
 });
 
-router.get('/albums/booknow', function(req, res, next){
+router.get('/booknow', function(req, res, next){
   res.render('albums/booknow')
+});
+router.get('/albums/newBooking', function(req, res, next){
+  res.render('albums/newBooking');
 });
 
 router.post('/albums/booknow', function(req, res, next){
@@ -36,7 +39,19 @@ router.post('/albums/booknow', function(req, res, next){
                               date: req.body.date,
                               comments: req.body.comments
                            });
-  res.redirect('/albums/home');
+  res.redirect('/home');
+});
+
+router.post('/albums/newBooking', function(req, res, next){
+  customerCollection.insert({ name: req.body.fullName,
+                              telephone: req.body.telephone,
+                              email: req.body.email,
+                              groupsize: req.body.groupsize,
+                              triptype: req.body.tripType,
+                              date: req.body.date,
+                              comments: req.body.comments
+                           });
+  res.redirect('albums/bookings');
 });
 
 
