@@ -8,13 +8,16 @@ block content
   h2= theAlbum.comments
   h2= theAlbum.locationb
   h2= theAlbum.commentsb
+  
+  div.currentWeather Current Weather
+  div.ip
+  
+  .form-group
 
+    form(action="/albums/"+ theAlbum._id + '/delete', method="post")
+      button(type="submit" value="Delete") Delete
 
-  button(type="submit" value="Edit Album")
-     a(href="/albums/" + theAlbum._id + '/edit') Edit
-
-  form(action="/albums/"+ theAlbum._id + '/delete', method="post")
-    button(type="submit" value="Delete") Delete
-
-  button(type="reset" value="reset") 
-      a(href="/albums/") Cancel
+      button(type="submit" value="Edit Album")
+        a(href="/albums/" + theAlbum._id + '/edit') Edit
+      button(type="reset" value="reset") 
+        a(href="/albums/") Cancel

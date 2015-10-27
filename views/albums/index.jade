@@ -1,40 +1,48 @@
 extends ../layout
 
-block content 
-  h1 Guides
+block content
+  if (!user)
+   button(type="fancy")
+    a(href="/login") Login
+    br
+   button(type="fancier")
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    h1 Guides
 
-  button(type="new" value='new')
-     a(href="/albums/new") New Guide
-  button(type="new" value='new') 
-     a(href="/albums/bookings") Bookings
-  button(type="reset" value="reset") 
-     a(href="/home") Home
+    button(type="new" value='new')
+       a(href="/albums/new") New Guide
+    button(type="new" value='new') 
+       a(href="/albums/bookings") Bookings
+    button(type="reset" value="reset") 
+       a(href="/home") Home
 
 
-  table
-    thead
-      tr
-        //- th ID
-        th Name
-        th ID
-        th Email
-        th Date
-        th Location
-        th Comments
-        th Location 2
-        th Comments 2
-    tbody
-      for album in allAlbums
+    table
+      thead
         tr
-          //- td= album._id
-          td
-             a(href="/albums/"+album._id)= album.name
-          td 
-             a(href="/albums/"+album._id)= album._id
-          td= album.email
-          td= album.date
-          td= album.location
-          td= album.comments
-          td= album.locationb
-          td= album.commentsb
-            
+          //- th ID
+          th Name
+          th ID
+          th Email
+          th Date
+          th Location
+          th Comments
+          th Location 2
+          th Comments 2
+      tbody
+        for album in allAlbums
+          tr
+            //- td= album._id
+            td
+               a(href="/albums/"+album._id)= album.name
+            td 
+               a(href="/albums/"+album._id)= album._id
+            td= album.email
+            td= album.date
+            td= album.location
+            td= album.comments
+            td= album.locationb
+            td= album.commentsb
+              

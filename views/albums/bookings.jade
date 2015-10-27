@@ -1,36 +1,44 @@
 extends ../layout
 
 block content 
-  h1 Customer Bookings
+  if (!user)
+   button(type="fancy")
+    a(href="/login") Login
+    br
+   button(type="fancier")
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    h1 Customer Bookings
 
-  button(type="reset" value="reset") 
-      a(href="/albums") Home
-  button(type="something")
-      a(href="/albums/newBooking") New Booking
+    button(type="reset" value="reset") 
+        a(href="/albums") Home
+    button(type="something")
+        a(href="/albums/newBooking") New Booking
 
-  table
-    thead
-      tr
-
-        th Name
-        th ID
-        th Phone
-        th Date
-        th Email
-        th Trip
-        th Groupsize
-        th Comments
-
-    tbody
-      for customer in allCustomers
+    table
+      thead
         tr
-          td
-             a(href="/albums/"+ customer._id + '/editBookings')= customer.name
-          td 
-             a(href="/albums/"+ customer._id + '/editBookings')=customer._id
-          td= customer.telephone
-          td= customer.date
-          td= customer.email
-          td= customer.triptype
-          td= customer.groupsize
-          td= customer.comments
+
+          th Name
+          th ID
+          th Phone
+          th Date
+          th Email
+          th Trip
+          th Groupsize
+          th Comments
+
+      tbody
+        for customer in allCustomers
+          tr
+            td
+               a(href="/albums/"+ customer._id + '/editBookings')= customer.name
+            td 
+               a(href="/albums/"+ customer._id + '/editBookings')=customer._id
+            td= customer.telephone
+            td= customer.date
+            td= customer.email
+            td= customer.triptype
+            td= customer.groupsize
+            td= customer.comments

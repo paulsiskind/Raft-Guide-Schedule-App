@@ -1,46 +1,54 @@
 extends ../layout
 
 block content 
+  if (!user)
+   button(type="fancy")
+    a(href="/login") Login
+    br
+   button(type="fancier")
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
 
-  h1 New Guide
+    h1 New Guide
 
-  form(action="/albums",method="post")
-    div.guide
-      label Name 
-      input(type="text" name="album_name")
-    div.email
-      label Email 
-      input(type="email" name="email")
-    div.date
-      label Date 
-      input(type="date" name="date")
-    div.location
-      label Location 
-      select(name = "location")
-        option(value="Beginners") Beginners
-        option(value="Lawson") Lawson
-        option(value="Dumont") Dumont
-        option(value="Kermits") Kermits
-        option(value="Gore Canyon") Gore Canyon
-        option(value="Upper C") Upper C
-        option(value="Shoshone") Shoshone
-    div.comments
-      label Comments 
-      textarea(name='comments')  
-    div.locationb
-      label Location 
-      select(name = "locationb")
-        option(value="Beginners") Beginners
-        option(value="Lawson") Lawson
-        option(value="Dumont") Dumont
-        option(value="Kermits") Kermits
-        option(value="Gore Canyon") Gore Canyon
-        option(value="Upper C") Upper C
-        option(value="Shoshone") Shoshone  
-    div.commentsb
-      label Comments 
-      textarea(name='commentsb')     
-    div.submit 
-      button(type="submit") Submit
-      button(type="reset" value="reset") 
-        a(href="/albums/") Cancel
+    form(action="/albums",method="post")
+      .form-group
+        label Name 
+        input.form-control(type="text" name="album_name")
+      .form-group
+        label Email 
+        input.form-control(type="email" name="email")
+      .form-group
+        label Date 
+        input.form-control(type="date" name="date")
+      .form-group
+        label Location 
+        select.form-control(name = "location")
+          option(value="Beginners") Beginners
+          option(value="Lawson") Lawson
+          option(value="Dumont") Dumont
+          option(value="Kermits") Kermits
+          option(value="Gore Canyon") Gore Canyon
+          option(value="Upper C") Upper C
+          option(value="Shoshone") Shoshone
+      .form-group
+        label Comments 
+        textarea.form-control(name='comments')  
+      .form-group
+        label Location 
+        select.form-control(name = "locationb")
+          option(value="Beginners") Beginners
+          option(value="Lawson") Lawson
+          option(value="Dumont") Dumont
+          option(value="Kermits") Kermits
+          option(value="Gore Canyon") Gore Canyon
+          option(value="Upper C") Upper C
+          option(value="Shoshone") Shoshone  
+      .form-group
+        label Comments 
+        textarea.form-control(name='commentsb')     
+      .form-group
+        button(type="submit") Submit
+        button(type="reset" value="reset") 
+          a(href="/albums/") Cancel

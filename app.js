@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var routes = require('./routes/index');
+/*var routes = require('./routes/index');*/
 var users = require('./routes/users');
 var albums = require('./routes/albums');
 var app = express();
@@ -34,7 +34,7 @@ app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+/*app.use('/', routes);*/
 
 app.use('/', albums);
 // passport config
@@ -44,7 +44,8 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 // mongoose
-mongoose.connect('mongodb://heroku_trh6rffw:r14bomkqo10qv4ah3hidhurpn0@ds051903.mongolab.com:51903/heroku_trh6rffw');
+// mongoose.connect('mongodb://heroku_trh6rffw:r14bomkqo10qv4ah3hidhurpn0@ds051903.mongolab.com:51903/heroku_trh6rffw');
+mongoose.connect('localhost/raftGuide')
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

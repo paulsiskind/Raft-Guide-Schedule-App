@@ -1,4 +1,4 @@
-var express = require('express');
+/*var express = require('express');
 var passport = require('passport');
 var Account = require('../models/account');
 var router = express.Router();
@@ -31,6 +31,9 @@ router.get('/login', function(req, res) {
 router.post('/login', passport.authenticate('local'), function(req, res) {
     res.redirect('/');
 });
+// router.post('/albums', passport.authenticate('local'), function(req, res) {
+//     res.redirect('/albums');
+// });
 
 router.get('/logout', function(req, res) {
     req.logout();
@@ -41,4 +44,4 @@ router.get('/ping', function(req, res){
     res.status(200).send("pong!");
 });
 
-module.exports = router;
+module.exports = router;*/

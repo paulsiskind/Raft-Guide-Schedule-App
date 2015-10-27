@@ -1,44 +1,55 @@
 extends ../layout
 
 block content
+  if (!user)
+   button(type="fancy")
+    a(href="/login") Login
+    br
+   button(type="fancier")
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
 
-   h1 New Customer
+    
+       h1 New Customer
 
-   form(action="/albums/newBooking", method="post")
-     div.fullname
-        label Full Name 
-        input(type="text" name="fullName")
-     div.telephone
-        label Telephone 
-        input(type="tel" name="telephone")
-     div.email
-        label Email 
-        input(type="email" name="email")
-     div.groupsize
-        label How Many in Your Group? 
-        input(type="number" name="groupsize")
-     div.tripType
-        label Trip Type 
-        br
-        input(type="radio" name="tripType" value="beginner")  
-        | Middle Clear Creek Class I-II $45
-        br
-        input(type="radio" name="tripType" value="intermediate")
-        | Upper Clear Creek Class III-VI $57
-        br
-        input(type="radio" name="tripType" value="advance")
-        | Lower Clear Creek Class IV(V) $70
-        br
-        input(type="radio" name="tripType" value="fullday")
-        | Full Day Advance I-IV(V) $90
-        br
-        input(type="radio" name="tripType" value="gore")
-        | Full Day Gore Canyon IV-V $120
-     div.date
-        label Date
-        input(type="date" name="date")
-        div.comments
-        label Comments 
-        textarea(name='comments')
-     div.submit
-        button(type="submit") Submit 
+       form(action="/albums/newBooking", method="post")
+         .form-group
+            label Full Name 
+            input.form-control(type="text" name="fullName")
+         .form-group
+            label Telephone 
+            input.form-control(type="tel" name="telephone")
+         .form-group
+            label Email 
+            input.form-control(type="email" name="email")
+         .form-group
+            label How Many in Your Group? 
+            input.form-control(type="number" name="groupsize")
+         .form-group
+            label Trip Type 
+            br
+            input(type="radio" name="tripType" value="beginner")  
+            | Middle Clear Creek Class I-II $45
+            br
+            input(type="radio" name="tripType" value="intermediate")
+            | Upper Clear Creek Class III-VI $57
+            br
+            input(type="radio" name="tripType" value="advance")
+            | Lower Clear Creek Class IV(V) $70
+            br
+            input(type="radio" name="tripType" value="fullday")
+            | Full Day Advance I-IV(V) $90
+            br
+            input(type="radio" name="tripType" value="gore")
+            | Full Day Gore Canyon IV-V $120
+         .form-group
+            label Date
+            input.form-control(type="date" name="date")
+         .form-group
+            label Comments 
+            textarea.form-control(name='comments')
+         .form-group
+            button(type="submit") Submit 
+            button(type="reset" value="reset") 
+              a(href="/albums/") Cancel
