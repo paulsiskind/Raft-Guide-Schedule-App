@@ -19,7 +19,7 @@ $(document).ready(function(){
     $(".lat").empty().append("Latitude: "+ data.latitude);
   });
 
-  $.get("http://api.openweathermap.org/data/2.5/weather?q=boulder,co?&APPID=fceb86b7fa0aa20c2959dbc7f63c1f99", function(data){
+  $.get("http://api.openweathermap.org/data/2.5/weather?q=idaho+springs,co?&APPID=fceb86b7fa0aa20c2959dbc7f63c1f99&units=imperial", function(data){
     $('.currentWeather').empty().append("Your Current Weather: "+ data.weather[0].description.toUpperCase())
     $('.temp').append("Temperature: "+ data.main.temp)
   });
