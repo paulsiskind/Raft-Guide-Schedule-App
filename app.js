@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/album-demo');
 
 /*var routes = require('./routes/index');*/
 var users = require('./routes/users');
