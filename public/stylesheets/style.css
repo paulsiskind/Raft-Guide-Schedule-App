@@ -2,7 +2,7 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
  /* background-color: blue; */
-  background:url('http://www.backcountry.com/wp-content/uploads/2014/05/IMG_6442.jpg') no-repeat center center fixed; 
+  background:url('//www.backcountry.com/wp-content/uploads/2014/05/IMG_6442.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

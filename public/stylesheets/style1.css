@@ -207,16 +207,16 @@ Main components
   color: white;
 }
 .cd-fixed-bg.cd-bg-1 {
-  background-image: url("http://hdwallpapers.cat/wallpaper/rafting_on_the_colorado_river_grand_canyon_hd-wallpaper-1350681.jpg");
+  background-image: url("//hdwallpapers.cat/wallpaper/rafting_on_the_colorado_river_grand_canyon_hd-wallpaper-1350681.jpg");
 }
 .cd-fixed-bg.cd-bg-2 {
-  background-image: url("http://i.ytimg.com/vi/BD9Oq0wSdcQ/maxresdefault.jpg");
+  background-image: url("//i.ytimg.com/vi/BD9Oq0wSdcQ/maxresdefault.jpg");
 }
 .cd-fixed-bg.cd-bg-3 {
-  background-image: url("http://www.coloradorafting.net/themes/site_themes/ava/img/uploads/galleries/669/14ersarkcomp.jpg");
+  background-image: url("//www.coloradorafting.net/themes/site_themes/ava/img/uploads/galleries/669/14ersarkcomp.jpg");
 }
 .cd-fixed-bg.cd-bg-4 {
-  background-image: url("http://www.coloradopast.com/ghosttowns/northcentral/Idaho%20Springs/med/Idaho_Springs_Colorado_0005.jpg");
+  background-image: url("//www.coloradopast.com/ghosttowns/northcentral/Idaho%20Springs/med/Idaho_Springs_Colorado_0005.jpg");
 }
 @media only screen and (min-width: 768px) {
   .cd-fixed-bg h1, .cd-fixed-bg h2 {
