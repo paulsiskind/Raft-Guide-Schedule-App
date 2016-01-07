@@ -130,9 +130,8 @@ router.get('/albums/:id/editBookings', function(req, res, next){
 
      /*below this line is the login routes*/
 
-router.get('/', function (req, res) {
-    res.render('index', { user : req.user });
-});
+
+
 
 router.get('/register', function(req, res) {
     res.render('register', { });
