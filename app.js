@@ -49,7 +49,7 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 // mongoose
-mongoose.connect('mongodb://heroku_trh6rffw:r14bomkqo10qv4ah3hidhurpn0@ds051903.mongolab.com:51903/heroku_trh6rffw' || 'localhost/raftGuide');
+mongoose.connect(process.env.MONGOLAB_URI);
 // mongoose.connect('localhost/raftGuide')
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
