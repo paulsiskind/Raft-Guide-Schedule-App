@@ -4,26 +4,30 @@ var router = express.Router();
 var db = require('monk')(process.env.MONGOLAB_URI);
 var albumCollection = db.get('guides');
 var customerCollection = db.get('customers')
-var passport = require('passport');
-var Account = require('../models/account');
-var Account = require('../models/account');
-var passport = require('passport');
+
+var Users = db.get('users');
+var bcrypt = require('bcrypt')
+
 
 
 
 router.get('/albums', function(req, res, next) {
   albumCollection.find({}, function (err, records) {
-    res.render('albums/index', {allAlbums: records, user: req.user });
+    var username = req.session.username;
+    console.log(username)
+    res.render('albums/index', {allAlbums: records, username: username});
   });
 });
 router.get('/albums/bookings', function(req, res, next){
   customerCollection.find({}, function(err, records){
-    res.render('albums/bookings', {allCustomers: records, user: req.user})
+    var username = req.session.username;
+    res.render('albums/bookings', {allCustomers: records, username: username})
   });
 });
 
 router.get('/albums/new', function(req, res, next){
-  res.render('albums/new', {user: req.user});
+  var username = req.session.username;
+  res.render('albums/new', {username: username});
 });
 
 router.get('/home', function(req, res, next){
@@ -34,7 +38,8 @@ router.get('/booknow', function(req, res, next){
   res.render('albums/booknow')
 });
 router.get('/albums/newBooking', function(req, res, next){
-  res.render('albums/newBooking', {user: req.user});
+  var username = req.session.username;
+  res.render('albums/newBooking', {username: username});
 });
 
 router.post('/albums/booknow', function(req, res, next){
@@ -130,42 +135,101 @@ router.get('/albums/:id/editBookings', function(req, res, next){
 
      /*below this line is the login routes*/
 
-
-
-
-router.get('/register', function(req, res) {
-    res.render('register', { });
+router.get('/', function(req, res, next){
+  res.redirect('/register');
 });
 
-router.post('/register', function(req, res) {
-    Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
-        if (err) {
-          return res.render("register", {info: "Sorry. That username already exists. Try again."});
-        }
+router.get('/signin', function(req, res, next){
+  res.render('signin')
+});
 
-        passport.authenticate('local')(req, res, function () {
-            res.redirect('/');
+router.get('/register', function(req, res, next){
+  res.render('index');
+});
+
+router.get('/login', function(req, res, next){
+  res.render('login');
+});
+
+router.get('/signout', function(req, res, next){
+  req.session = null;
+  res.redirect('/signin');
+});
+
+
+router.post('/', function(req, res, next){
+  var hash = bcrypt.hashSync(req.body.password, 12);
+  var errors = [];
+  if(req.body.email == 0){
+    errors.push('Email cannot be blank!')
+  }
+  if(req.body.password.length == 0){
+    errors.push('Password Cannot be blank!');
+  }
+  if(req.body.password.length < 8){
+    errors.push('Password Must be atleast 8 characters!')
+  }
+  re = /[0-9]/;
+  if(!re.test(req.body.password)){
+    errors.push('Password Must Contain at least One Number!')
+  }
+  // de = /[@#$%^&+=]/;
+  // if(!de.text(req.body.password)){
+  //   errors.push('Password Must Contain at least one Special Character!')
+  // }
+  if(req.body.password !== req.body.confirmation){
+    errors.push('Password does not match confirmation')
+  }
+  if(errors.length){
+    res.render('login', {errors:errors})
+  }
+  else{
+    Users.find({email: req.body.email.toLowerCase()}, function(err, data){
+      if(data.length > 0){
+        errors.push('Email Already in Exists!');
+        res.render('login', {errors:errors});
+      }
+      else{
+        Users.insert({email: req.body.email.toLowerCase(), passwordDigest:hash}, function(err, data){
+          req.session.username = req.body.email;
+          res.redirect('/albums')
         });
+      }
     });
+  }
 });
 
-router.get('/login', function(req, res) {
-    res.render('login', { user : req.user });
+router.post('/signin', function(req, res, next){
+  var errors = [];
+  if(req.body.email.length == 0){
+    errors.push('Email Cannot be Blank!')
+  }
+  if(req.body.password.length == 0){
+    errors.push('Password Cannot be Blank!')
+  }
+  if(errors.length){
+    res.render('signin', {errors: errors})
+  }
+  else{
+    Users.findOne({email: req.body.email}, function(err, data){
+      if(data){
+        if(bcrypt.compareSync(req.body.password, data.passwordDigest)){
+          req.session.username = req.body.email;
+          res.redirect('/albums')
+        }
+        else{
+          errors.push("Invalid Email/Password");
+          res.render('signin', {errors: errors})
+        }
+      }else{
+        errors.push('Email Does not Exist');
+        res.render('signin', {errors: errors})
+      }
+    });
+  }
+
 });
 
-router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.redirect('/');
-});
-// router.post('/albums', passport.authenticate('local'), function(req, res) {
-//     res.redirect('/albums');
-// });
 
-router.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-});
 
-router.get('/ping', function(req, res){
-    res.status(200).send("pong!");
-});
 module.exports = router;

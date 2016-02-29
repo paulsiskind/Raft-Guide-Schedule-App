@@ -1,47 +1,103 @@
-/*var express = require('express');
-var passport = require('passport');
-var Account = require('../models/account');
+var express = require('express');
 var router = express.Router();
+var db = require('monk')('raftguide');
+var Users = db.get('users');
+var bcrypt = require('bcrypt')
 
-
-router.get('/', function (req, res) {
-    res.render('index', { user : req.user });
+router.get('/', function(req, res, next){
+  res.redirect('/register');
 });
 
-router.get('/register', function(req, res) {
-    res.render('register', { });
+router.get('/signin', function(req, res, next){
+  res.render('signin')
 });
 
-router.post('/register', function(req, res) {
-    Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
-        if (err) {
-          return res.render("register", {info: "Sorry. That username already exists. Try again."});
-        }
+router.get('/register', function(req, res, next){
+  res.render('index');
+});
 
-        passport.authenticate('local')(req, res, function () {
-            res.redirect('/');
+router.get('/signout', function(req, res, next){
+  req.session = null;
+  res.redirect('/signin');
+});
+
+router.get('/dashboard', function(req, res, next){
+  var username = req.session.username;
+  console.log(username)
+  res.render('show', {username: username});
+});
+
+router.post('/', function(req, res, next){
+  var hash = bcrypt.hashSync(req.body.password, 12);
+  var errors = [];
+  if(req.body.email == 0){
+    errors.push('Email cannot be blank!')
+  }
+  if(req.body.password.length == 0){
+    errors.push('Password Cannot be blank!');
+  }
+  if(req.body.password.length < 8){
+    errors.push('Password Must be atleast 8 characters!')
+  }
+  re = /[0-9]/;
+  if(!re.test(req.body.password)){
+    errors.push('Password Must Contain at least One Number!')
+  }
+  // de = /[@#$%^&+=]/;
+  // if(!de.text(req.body.password)){
+  //   errors.push('Password Must Contain at least one Special Character!')
+  // }
+  if(req.body.password !== req.body.confirmation){
+    errors.push('Password does not match confirmation')
+  }
+  if(errors.length){
+    res.render('index', {errors:errors})
+  }
+  else{
+    Users.find({email: req.body.email.toLowerCase()}, function(err, data){
+      if(data.length > 0){
+        errors.push('Email Already in Exists!');
+        res.render('index', {errors:errors});
+      }
+      else{
+        Users.insert({email: req.body.email.toLowerCase(), passwordDigest:hash}, function(err, data){
+          req.session.username = req.body.email;
+          res.redirect('/dashboard')
         });
+      }
     });
+  }
 });
 
-router.get('/login', function(req, res) {
-    res.render('login', { user : req.user });
+router.post('/signin', function(req, res, next){
+  var errors = [];
+  if(req.body.email.length == 0){
+    errors.push('Email Cannot be Blank!')
+  }
+  if(req.body.password.length == 0){
+    errors.push('Password Cannot be Blank!')
+  }
+  if(errors.length){
+    res.render('signin', {errors: errors})
+  }
+  else{
+    Users.findOne({email: req.body.email}, function(err, data){
+      if(data){
+        if(bcrypt.compareSync(req.body.password, data.passwordDigest)){
+          req.session.username = req.body.email;
+          res.redirect('/dashboard')
+        }
+        else{
+          errors.push("Invalid Email/Password");
+          res.render('signin', {errors: errors})
+        }
+      }else{
+        errors.push('Email Does not Exist');
+        res.render('signin', {errors: errors})
+      }
+    });
+  }
+
 });
 
-router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.redirect('/');
-});
-// router.post('/albums', passport.authenticate('local'), function(req, res) {
-//     res.redirect('/albums');
-// });
-
-router.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-});
-
-router.get('/ping', function(req, res){
-    res.status(200).send("pong!");
-});
-
-module.exports = router;*/
+module.exports = router;

@@ -1,14 +1,15 @@
 extends ../layout
 
 block content 
-  if (!user)
+  if (!username)
    button(type="fancy")
     a(href="/login") Login
     br
    button(type="fancier")
     a(href="/register") Register
-  if (user)
-    p You are currently logged in as #{user.username}
+    
+  if (username)
+    p You are currently logged in as #{username}
 
     h1 New Guide
 
