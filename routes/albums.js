@@ -144,7 +144,8 @@ router.get('/signin', function(req, res, next){
 });
 
 router.get('/register', function(req, res, next){
-  res.render('index');
+  var username = req.session.username;
+  res.render('index', {username: username});
 });
 
 router.get('/login', function(req, res, next){
